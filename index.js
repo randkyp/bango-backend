@@ -11,3 +11,10 @@ try {
 } catch (error) {
   console.error(error);
 }
+
+try {
+  sequelize.sync();
+} catch (error) {
+  console.error("sync:");
+  console.error(error);
+}
