@@ -9,7 +9,6 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      invoice_details.belongsTo(models.invoice_headers);
       invoice_details.belongsTo(models.products);
     }
   }

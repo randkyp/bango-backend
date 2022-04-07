@@ -9,16 +9,16 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      movement_logs.hasMany(models.invoice_details);
-      movement_logs.hasMany(models.warehouses, {
+      movement_logs.belongsTo(models.invoice_details);
+      movement_logs.belongsTo(models.warehouses, {
         as: "from",
         foreignKey: "from_id",
       });
-      movement_logs.hasMany(models.warehouses, {
+      movement_logs.belongsTo(models.warehouses, {
         as: "to",
         foreignKey: "to_id",
       });
-      movement_logs.hasMany(models.admins);
+      movement_logs.belongsTo(models.admins);
     }
   }
   movement_logs.init(
