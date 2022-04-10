@@ -3,17 +3,17 @@ const express = require("express");
 const app = express();
 app.use(express.json());
 
-const { sequelize } = require("./models");
+const db = require("./models");
 
 try {
-  sequelize.authenticate();
+  db.sequelize.authenticate();
   console.log("sequelize: connected to database.");
 } catch (error) {
   console.error(error);
 }
 
 try {
-  sequelize.sync();
+  db.sequelize.sync();
   console.log("sequelize: synced table structures successfully.");
 } catch (error) {
   console.error("sync:");
