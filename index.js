@@ -14,6 +14,7 @@ try {
 
 try {
   sequelize.sync();
+  console.log("sequelize: synced table structures successfully.");
 } catch (error) {
   console.error("sync:");
   console.error(error);

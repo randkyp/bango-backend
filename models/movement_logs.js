@@ -23,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   movement_logs.init(
     {
-      date: DataTypes.DATE,
+      date: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
     },
     {
       sequelize,
