@@ -1,34 +1,34 @@
 const sequelize = require("../lib/sequelize");
-const { DataTypes } = require("sequelize");
+const Sequelize = require("sequelize");
 
 // import models to associate here
 
 const User = sequelize.define(
   "User",
   {
-    full_name: DataTypes.STRING,
+    full_name: Sequelize.STRING,
     email: {
       allowNull: false,
-      type: DataTypes.STRING,
+      type: Sequelize.STRING,
     },
     password: {
       allowNull: false,
-      type: DataTypes.STRING(512),
+      type: Sequelize.STRING(512),
     },
     is_verified: {
       allowNull: false,
       defaultValue: 0,
-      type: DataTypes.BOOLEAN,
+      type: Sequelize.BOOLEAN,
     },
     is_active: {
       allowNull: false,
       defaultValue: 0,
-      type: DataTypes.BOOLEAN,
+      type: Sequelize.BOOLEAN,
     },
     is_pend_reset: {
       allowNull: false,
       defaultValue: 0,
-      type: DataTypes.BOOLEAN,
+      type: Sequelize.BOOLEAN,
     },
   },
   { tableName: "users", paranoid: true }

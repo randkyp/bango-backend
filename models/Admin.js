@@ -1,15 +1,15 @@
 const sequelize = require("../lib/sequelize");
-const { DataTypes } = require("sequelize");
+const Sequelize = require("sequelize");
 
 const Admin = sequelize.define(
   "Admin",
   {
     email: {
-      type: DataTypes.STRING,
+      type: Sequelize.STRING,
       allowNull: false,
     },
     password: {
-      type: DataTypes.STRING(512),
+      type: Sequelize.STRING(512),
       allowNull: false,
     },
   },

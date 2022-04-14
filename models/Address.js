@@ -1,5 +1,5 @@
 const sequelize = require("../lib/sequelize");
-const { DataTypes } = require("sequelize");
+const Sequelize = require("sequelize");
 
 // import models to associate here
 const User = require("./User");
@@ -9,11 +9,11 @@ const Address = sequelize.define(
   {
     address: {
       allowNull: false,
-      type: DataTypes.STRING,
+      type: Sequelize.STRING,
     },
     postcode: {
       allowNull: false,
-      type: DataTypes.INTEGER,
+      type: Sequelize.INTEGER,
     },
   },
   { tableName: "addresses", paranoid: true }

@@ -1,5 +1,5 @@
 const sequelize = require("../lib/sequelize");
-const { DataTypes } = require("sequelize");
+const Sequelize = require("sequelize");
 
 // import models to associate here
 const User = require("./User");
@@ -8,7 +8,7 @@ const Product = require("./Product");
 const Cart = sequelize.define(
   "Cart",
   {
-    qty: DataTypes.INTEGER,
+    qty: Sequelize.INTEGER,
   },
   { tableName: "carts" }
 );

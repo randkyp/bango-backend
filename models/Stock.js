@@ -1,5 +1,5 @@
 const sequelize = require("../lib/sequelize");
-const { DataTypes } = require("sequelize");
+const Sequelize = require("sequelize");
 
 // import models to associate here
 const Product = require("./Product");
@@ -8,8 +8,8 @@ const Warehouse = require("./Warehouse");
 const Stock = sequelize.define(
   "Stock",
   {
-    ready_stock: { allowNull: false, type: DataTypes.INTEGER },
-    reserve_stock: { allowNull: false, type: DataTypes.INTEGER },
+    ready_stock: { allowNull: false, type: Sequelize.INTEGER },
+    reserve_stock: { allowNull: false, type: Sequelize.INTEGER },
   },
   { tableName: "stocks" }
 );

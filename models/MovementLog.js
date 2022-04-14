@@ -1,5 +1,5 @@
 const sequelize = require("../lib/sequelize");
-const { DataTypes } = require("sequelize");
+const Sequelize = require("sequelize");
 
 // import models to associate here
 const InvoiceDetail = require("./InvoiceDetail");
@@ -9,7 +9,7 @@ const Admin = require("./Admin");
 const MovementLog = sequelize.define(
   "MovementLog",
   {
-    date: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
+    date: { type: Sequelize.DATE, defaultValue: Sequelize.NOW },
   },
   { tableName: "movement_logs" }
 );

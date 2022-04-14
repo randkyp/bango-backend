@@ -1,5 +1,5 @@
 const sequelize = require("../lib/sequelize");
-const { DataTypes } = require("sequelize");
+const Sequelize = require("sequelize");
 
 // import models to associate here
 const InvoiceHeader = require("./InvoiceHeader");
@@ -7,8 +7,8 @@ const InvoiceHeader = require("./InvoiceHeader");
 const InvoiceDetail = sequelize.define(
   "InvoiceDetail",
   {
-    price: { allowNull: false, type: DataTypes.INTEGER },
-    quantity: { allowNull: false, type: DataTypes.INTEGER },
+    price: { allowNull: false, type: Sequelize.INTEGER },
+    quantity: { allowNull: false, type: Sequelize.INTEGER },
   },
   { tableName: "invoice_details", paranoid: true }
 );
