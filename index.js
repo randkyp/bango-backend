@@ -35,21 +35,9 @@ const port = process.env.PORT || 3030;
 
 (async () => {
   try {
-    // careful: when not using class auto-enum/imports, sync order is important
-    // because foreign key depedencies, etc.
-    await User.sync({ alter: true });
-    await Product.sync({ alter: true });
-    await Warehouse.sync({ alter: true });
-    await Stock.sync({ alter: true });
-    await Address.sync({ alter: true });
-    await Admin.sync({ alter: true });
-    await Cart.sync({ alter: true });
-    await Category.sync({ alter: true });
-    await InvoiceHeader.sync({ alter: true });
-    await InvoiceDetail.sync({ alter: true });
-    await MovementLog.sync({ alter: true });
-    await PaymentConfirmation.sync({ alter: true });
-    await WarehouseDistance.sync({ alter: true });
+    // changing the imports in the models allows us to use
+    // sequelize.sync() again to sync all the models. yay!
+    await sequelize.sync();
     console.log("sequelize: synced table structures successfully.");
     // test addition
     // await User.create({
