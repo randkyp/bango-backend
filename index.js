@@ -36,20 +36,18 @@ app.listen(PORT, () =>
   console.log(`Ready to serve connections on port ${PORT}`.green)
 );
 
-// (async () => {
-//   try {
-//     await sequelize.authenticate();
-//     console.log("sequelize:".green + " connected to database.");
-//     await sequelize.sync({ alter: true });
-//     console.log(
-//       "sequelize:".green +
-//         " tables synced successfully. " +
-//         "(alter: true)".grey
-//     );
-//   } catch (error) {
-//     console.error(error);
-//   }
-// })();
+(async () => {
+  try {
+    await sequelize.authenticate();
+    console.log("sequelize:".green + " connected to database.");
+    // await sequelize.sync({ force: true });
+    // console.log(
+    //   "sequelize:".green + " tables synced successfully. " + "(force: true)".red
+    // );
+  } catch (error) {
+    console.error(error);
+  }
+})();
 
 // (async () => {
 //   try {

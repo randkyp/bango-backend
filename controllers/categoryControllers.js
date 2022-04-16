@@ -33,7 +33,6 @@ module.exports = {
           id: +req.params.id,
         },
       });
-      console.log(remove);
       res.status(200).send(`Category ID ${req.params.id} deleted.`);
     } catch (error) {
       console.error(error);
@@ -46,7 +45,6 @@ module.exports = {
         { category: req.body.category },
         { where: { id: +req.params.id } }
       );
-      console.log(update);
       res.status(200).send(`Category ID ${req.params.id} updated.`);
     } catch (error) {
       console.error(error);

@@ -7,7 +7,7 @@ const Product = require("./Product");
 const Category = sequelize.define(
   "Category",
   {
-    category: { allowNull: false, type: Sequelize.STRING, unique: true },
+    category: { allowNull: false, type: Sequelize.STRING },
   },
   { tableName: "categories", paranoid: true }
 );
