@@ -98,4 +98,17 @@ module.exports = {
       res.status(500).send(error);
     }
   },
+  delete: async (req, res) => {
+    try {
+      const remove = await Product.destroy({
+        where: {
+          id: +req.params.id,
+        },
+      });
+      res.status(200).send(`Product ID ${req.params.id} deleted.`);
+    } catch (error) {
+      console.error(error);
+      res.status(500).send(error);
+    }
+  },
 };
