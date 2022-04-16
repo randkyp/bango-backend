@@ -70,8 +70,8 @@ module.exports = {
         // ins.addWarehouse(warehouse);
       });
 
-      //@ts-ignore vs code can't see the dynamically-generated id prop
       // returns the primary key of the just-inserted product
+      //@ts-ignore vs code can't see the dynamically-generated id prop
       res.status(200).send(`${ins.id}`);
     } catch (error) {
       console.error(error);

@@ -23,32 +23,33 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-const { productRouters } = require("./routers");
+const { productRouters, categoryRouters } = require("./routers");
 
 app.get("/", (req, res) => {
   res.status(200).send("<h4>Group 3 Purwadhika bootcamp project backend</h4>");
 });
 
 app.use("/product", productRouters);
+app.use("/category", categoryRouters);
 
 app.listen(PORT, () =>
   console.log(`Ready to serve connections on port ${PORT}`.green)
 );
 
-(async () => {
-  try {
-    await sequelize.authenticate();
-    console.log("sequelize:".green + " connected to database.");
-    await sequelize.sync({ alter: true });
-    console.log(
-      "sequelize:".green +
-        " tables synced successfully. " +
-        "(alter: true)".grey
-    );
-  } catch (error) {
-    console.error(error);
-  }
-})();
+// (async () => {
+//   try {
+//     await sequelize.authenticate();
+//     console.log("sequelize:".green + " connected to database.");
+//     await sequelize.sync({ alter: true });
+//     console.log(
+//       "sequelize:".green +
+//         " tables synced successfully. " +
+//         "(alter: true)".grey
+//     );
+//   } catch (error) {
+//     console.error(error);
+//   }
+// })();
 
 // (async () => {
 //   try {
