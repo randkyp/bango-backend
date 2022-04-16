@@ -27,6 +27,22 @@ module.exports = {
     }
   },
   add: async (req, res) => {
+    /* request example: 
+    {
+    "name": "Chitato",
+    "buy_price": 15000,
+    "sell_price": 16000,
+    "description": "Camilan keripik kentang.",
+    "img_path": "path",
+    "category": "Makanan Ringan",
+    "warehouses": [
+        {"name": "Malang", "ready_stock": 15, "reserve_stock": 15},
+        {"name": "Surabaya", "ready_stock": 9, "reserve_stock": 9},
+        {"name": "Jakarta Selatan", "ready_stock": 9, "reserve_stock": 9},
+        {"name": "Bali", "ready_stock": 0, "reserve_stock": 0}
+    ]
+    }*/
+
     try {
       const {
         name,
@@ -46,33 +62,37 @@ module.exports = {
         },
       });
 
-      const ins = await Product.create({
+      const add = await Product.create({
         name,
         buy_price: +buy_price,
         sell_price: +sell_price,
         description,
         img_path,
+        // @ts-ignore
+        CategoryId: `${CategoryInstance.dataValues.id}`,
       });
 
-      //@ts-ignore vs code can't enumerate dynamic instance methods
-      await ins.setCategory(CategoryInstance);
-
-      warehouses.forEach((warehouse) => {
-        const WarehouseInstance = Warehouse.findOne({
+      await warehouses.forEach(async (warehouse) => {
+        const { name, ready_stock, reserve_stock } = await warehouse;
+        const WarehouseInstance = await Warehouse.findOne({
           where: {
-            name: warehouse.name,
+            name,
           },
         });
 
-        Stock.create({});
-
-        //@ts-ignore vs code can't enumerate dynamic instance methods
-        // ins.addWarehouse(warehouse);
+        await Stock.create({
+          ready_stock: +ready_stock,
+          reserve_stock: +reserve_stock,
+          // @ts-ignore
+          ProductId: add.id,
+          // @ts-ignore
+          WarehouseId: `${WarehouseInstance.dataValues.id}`,
+        });
       });
 
       // returns the primary key of the just-inserted product
       //@ts-ignore vs code can't see the dynamically-generated id prop
-      res.status(200).send(`${ins.id}`);
+      res.status(200).send(`${add.id}`);
     } catch (error) {
       console.error(error);
       res.status(500).send(error);
