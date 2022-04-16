@@ -20,7 +20,7 @@ const Address = sequelize.define(
 );
 
 // define associations here
-Address.belongsTo(User);
-User.hasMany(Address);
+const AddressUser = Address.belongsTo(User);
+const UserAddresses = User.hasMany(Address);
 
 module.exports = Address;

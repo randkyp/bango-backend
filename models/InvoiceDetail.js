@@ -14,7 +14,7 @@ const InvoiceDetail = sequelize.define(
 );
 
 // define associations here
-InvoiceDetail.belongsTo(InvoiceHeader);
-InvoiceHeader.hasMany(InvoiceDetail);
+const InvoiceDetailHeader = InvoiceDetail.belongsTo(InvoiceHeader);
+const InvoiceHeaderDetails = InvoiceHeader.hasMany(InvoiceDetail);
 
 module.exports = InvoiceDetail;

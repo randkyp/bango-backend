@@ -1,9 +1,7 @@
 const express = require("express");
 const cors = require("cors");
-
-const app = express();
-app.use(express.json());
-app.use(cors());
+const bearerToken = require("express-bearer-token");
+const colors = require("colors");
 
 const sequelize = require("./lib/sequelize");
 const Address = require("./models/Address");
@@ -20,34 +18,42 @@ const User = require("./models/User");
 const Warehouse = require("./models/Warehouse");
 const WarehouseDistance = require("./models/WarehouseDistance");
 
-// router imports go here
+const PORT = process.env.PORT || 3300;
+const app = express();
+app.use(express.json());
+app.use(cors());
 
-const port = process.env.PORT || 3030;
+const { productRouters } = require("./routers");
+
+app.get("/", (req, res) => {
+  res.status(200).send("<h4>Group 3 Purwadhika bootcamp project backend</h4>");
+});
+
+app.use("/product", productRouters);
+
+app.listen(PORT, () =>
+  console.log(`Ready to serve connections on port ${PORT}`.green)
+);
 
 (async () => {
   try {
     await sequelize.authenticate();
-    console.log("sequelize: connected to database.");
+    console.log("sequelize:".green + " connected to database.");
+    await sequelize.sync({ alter: true });
+    console.log(
+      "sequelize:".green +
+        " tables synced successfully. " +
+        "(alter: true)".grey
+    );
   } catch (error) {
     console.error(error);
   }
 })();
 
-(async () => {
-  try {
-    // changing the imports in the models allows us to use
-    // sequelize.sync() again to sync all the models. yay!
-    await sequelize.sync();
-    console.log("sequelize: synced table structures successfully.");
-    // test addition
-    // await User.create({
-    //   full_name: "test",
-    //   email: "mail@mail.com",
-    //   password: "123",
-    // });
-    // console.log("test user inserted successfully.");
-  } catch (error) {
-    console.error("sync:");
-    console.error(error);
-  }
-})();
+// (async () => {
+//   try {
+//     Category.create({ category: "Makanan Ringan" });
+//   } catch (error) {
+//     console.error(error);
+//   }
+// })();

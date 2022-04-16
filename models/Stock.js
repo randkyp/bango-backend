@@ -15,9 +15,9 @@ const Stock = sequelize.define(
 );
 
 // define associations here
-Stock.belongsTo(Product);
-Product.hasMany(Stock);
-Stock.belongsTo(Warehouse);
-Warehouse.hasOne(Stock);
+const StockProduct = Stock.belongsTo(Product);
+const ProductStocks = Product.hasMany(Stock);
+const StockWarehouse = Stock.belongsTo(Warehouse);
+const WarehouseStock = Warehouse.hasOne(Stock);
 
 module.exports = Stock;

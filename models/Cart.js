@@ -14,9 +14,9 @@ const Cart = sequelize.define(
 );
 
 // define associations here
-Cart.belongsTo(User);
-User.hasMany(Cart);
-Cart.belongsTo(Product);
-Product.hasMany(Cart);
+const CartUser = Cart.belongsTo(User);
+const UserCarts = User.hasMany(Cart);
+const CartProduct = Cart.belongsTo(Product);
+const ProductCarts = Product.hasMany(Cart);
 
 module.exports = Cart;

@@ -13,7 +13,9 @@ const PaymentConfirmation = sequelize.define(
 );
 
 // define associations here
-PaymentConfirmation.belongsTo(InvoiceHeader);
-InvoiceHeader.hasOne(PaymentConfirmation);
+const PaymentConfirmationInvoiceHeader =
+  PaymentConfirmation.belongsTo(InvoiceHeader);
+const InvoiceHeaderPaymentConfirmation =
+  InvoiceHeader.hasOne(PaymentConfirmation);
 
 module.exports = PaymentConfirmation;

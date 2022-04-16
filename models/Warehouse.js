@@ -15,7 +15,18 @@ const Warehouse = sequelize.define(
 );
 
 // define associations here
-Warehouse.belongsTo(Product);
-Product.hasMany(Warehouse);
+// const WarehouseProduct = Warehouse.belongsTo(Product);
+// const ProductWarehouses = Product.hasMany(Warehouse);
+Product.belongsToMany(Warehouse, {
+  through: "warehouse_products",
+  as: "products",
+  foreignKey: "ProductId",
+});
+
+Warehouse.belongsToMany(Product, {
+  through: "warehouse_products",
+  as: "warehouses",
+  foreignKey: "WarehouseId",
+});
 
 module.exports = Warehouse;

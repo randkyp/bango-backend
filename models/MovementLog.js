@@ -15,9 +15,15 @@ const MovementLog = sequelize.define(
 );
 
 // define associations here
-MovementLog.belongsTo(InvoiceDetail);
-MovementLog.belongsTo(Warehouse, { as: "from", foreignKey: "from_id" });
-MovementLog.belongsTo(Warehouse, { as: "to", foreignKey: "to_id" });
-MovementLog.belongsTo(Admin);
+const MovementLogInvoiceDetail = MovementLog.belongsTo(InvoiceDetail);
+const MovementLogFrom = MovementLog.belongsTo(Warehouse, {
+  as: "from",
+  foreignKey: "from_id",
+});
+const MovementLogTo = MovementLog.belongsTo(Warehouse, {
+  as: "to",
+  foreignKey: "to_id",
+});
+const MovementLogAdmin = MovementLog.belongsTo(Admin);
 
 module.exports = MovementLog;

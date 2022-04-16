@@ -7,7 +7,7 @@ const User = require("./User");
 const InvoiceHeader = sequelize.define(
   "InvoiceHeader",
   {
-    code: { allowNull: false, type: Sequelize.STRING },
+    code: { allowNull: false, type: Sequelize.STRING, unique: true },
     grand_total: { allowNull: false, type: Sequelize.INTEGER },
     status: Sequelize.STRING,
   },
@@ -15,7 +15,7 @@ const InvoiceHeader = sequelize.define(
 );
 
 // define associations here
-InvoiceHeader.belongsTo(User);
-User.hasMany(InvoiceHeader);
+const InvoiceHeaderUser = InvoiceHeader.belongsTo(User);
+const UserInvoiceHeaders = User.hasMany(InvoiceHeader);
 
 module.exports = InvoiceHeader;

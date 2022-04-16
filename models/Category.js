@@ -7,13 +7,13 @@ const Product = require("./Product");
 const Category = sequelize.define(
   "Category",
   {
-    category: { allowNull: false, type: Sequelize.STRING },
+    category: { allowNull: false, type: Sequelize.STRING, unique: true },
   },
   { tableName: "categories", paranoid: true }
 );
 
 // define associations here
-Category.belongsTo(Product);
-Product.hasMany(Category);
+const ProductCategory = Product.belongsTo(Category);
+const CategoryProducts = Category.hasMany(Product);
 
 module.exports = Category;
