@@ -23,7 +23,11 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-const { productRouters, categoryRouters } = require("./routers");
+const {
+  productRouters,
+  categoryRouters,
+  warehouseRouters,
+} = require("./routers");
 
 app.get("/", (req, res) => {
   res.status(200).send("<h4>Group 3 Purwadhika bootcamp project backend</h4>");
@@ -31,6 +35,7 @@ app.get("/", (req, res) => {
 
 app.use("/product", productRouters);
 app.use("/category", categoryRouters);
+app.use("/warehouse", warehouseRouters);
 
 app.listen(PORT, () =>
   console.log(`Ready to serve connections on port ${PORT}`.green)
